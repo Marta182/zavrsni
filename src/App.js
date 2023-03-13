@@ -1,4 +1,4 @@
-import EnterScreen from "./components/enter_screen/EnterScreen";
+import EnterScreen from "./components/login/EnterScreen";
 import { useState } from "react";
 import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -41,13 +41,7 @@ function App() {
 
   const getRoomMembers = (room) => {
     room.on("members", (members) => setActiveMembers(members));
-    room.on("member_join", (member) =>
-      setActiveMembers((prev) => [...prev, member])
-    );
-    room.on("member_leave", (member) =>
-      setActiveMembers((prev) => prev.filter((m) => m.id !== member.id))
-    );
-  };
+  }
 
   const onSendMessage = (message) => {
     chat.publish({
@@ -55,7 +49,6 @@ function App() {
       message,
     });
   };
-
   return (
     <div className="app">
       <CssBaseline />

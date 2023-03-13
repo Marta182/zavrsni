@@ -6,7 +6,7 @@ function Header() {
   return (
     <Box className="header">
       <Typography variant="h4" className="header-text">
-        Hello
+        Hello friend!
       </Typography>
     </Box>
   );

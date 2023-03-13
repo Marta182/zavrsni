@@ -5,11 +5,9 @@ import "./Messages.css";
 function Messages({ messages, currentMember }) {
   const renderMessage = (message) => {
     const { data: messageText, member: { clientData: { username } }, id: memberId } = message;
-    const current = memberId === currentMember.chatId;
-    const resolveClassName = () => current ? "current" : "";
-
+    
     return (
-      <ListItem className={resolveClassName()} key={message.id}>
+      <ListItem key={message.id}>
         <ListItemText
           primary={username}
           secondary={<Chip label={messageText} />}
@@ -21,7 +19,7 @@ function Messages({ messages, currentMember }) {
   return (
     <div className="messages-container">
       <List className="messages-list">
-        {messages.map(renderMessage)}
+      {messages.map(renderMessage)}
       </List>
     </div>
   );

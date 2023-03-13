@@ -5,20 +5,12 @@ import "./EnterScreen.css";
 
 function EnterScreen({ userEnter }) {
   const [nickname, setNickname] = useState("");
-
   const handleInputChange = (e) => {
     setNickname(e.target.value);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     userEnter(nickname);
-  };
-
-  const handleEnter = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit();
-    }
   };
 
   return (
@@ -32,12 +24,11 @@ function EnterScreen({ userEnter }) {
           type="text"
           value={nickname}
           onChange={handleInputChange}
-          onKeyUp={handleEnter}
         />
         <Button variant="outlined" onClick={handleSubmit}>
           Enter chat
         </Button>
-        <Typography>Choose desired nickname and enjoy chatting</Typography>
+        <Typography>Choose your nickame!</Typography>
       </Paper>
     </Box>
   );

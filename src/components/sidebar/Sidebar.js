@@ -1,53 +1,32 @@
-import { useState } from 'react';
-import { createAvatar } from '@dicebear/core';
-import { micah } from '@dicebear/collection';
-import {
-  Box,
-  List,
-  ListItem,
-  Avatar,
-  Typography,
-  Chip
-} from '@mui/material';
-import './Sidebar.css';
+import React from "react";
+import { createAvatar } from "@dicebear/core";
+import { botttsNeutral } from "@dicebear/collection";
+import "./Sidebar.css";
+import { Box, List, ListItem, Avatar, Typography, Chip } from "@mui/material";
 
 function Sidebar({ activeMembers, currentMember }) {
   const getAvatar = (username) => {
-    const avatar = createAvatar(micah, {
+    const avatar = createAvatar(botttsNeutral, {
       seed: username,
       radius: 50,
-      size: 48
+      size: 48,
     });
-    return avatar.toDataUri();
+    const dataUri = avatar.toDataUriSync();
+    return dataUri;
   };
 
   return (
-    <Box className="sidebar">
-      <Box className="current-member">
-        <Avatar
-          src={getAvatar(currentMember.username)}
-          alt={currentMember.username}
-        />
-        <Typography variant="h5">{currentMember.username}</Typography>
-      </Box>
-
-      <Chip label="ACTIVE MEMBERS" />
-
-      <Box className="active-members">
-        <Typography component="div" variant="body1" />
+    <div className="sidebar">
+      <Chip color="success" label="ONLINE" />
         <List>
-          {activeMembers.map((member) => (
-            <ListItem key={member.id}>
-              <Avatar
-                src={getAvatar(member.clientData.username)}
-                alt={member.clientData.username}
-              />
-              {member.clientData.username}
+          {activeMembers.map((user) => (
+            <ListItem key={user.id}>
+              <Avatar src={getAvatar(user.clientData.username)} alt="avatar" />
+              {user.clientData.username}
             </ListItem>
           ))}
         </List>
-      </Box>
-    </Box>
+    </div>
   );
 }
 

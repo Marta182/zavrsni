@@ -1,16 +1,18 @@
 .sidebar {
-    display: flex;
-    width: 15%;
-    flex-direction: column;
-    border-right: solid;
-    border-color: blue;
-    padding: 0.5%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  column-gap: 20px;
+  background-color: rgb(255, 255, 255);
+  width: 500px;
+  height: 90%;
+  padding: 5%;
   }
   
-  .current-member {
-    padding: 5%;
+  .members {
     display: flex;
     justify-content: center;
+    padding: 20%;
     margin-top: 10%;
     margin-bottom: 10%;
   }
