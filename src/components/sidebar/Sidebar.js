@@ -4,13 +4,9 @@ import { botttsNeutral } from "@dicebear/collection";
 import "./Sidebar.css";
 import { Box, List, ListItem, Avatar, Typography, Chip } from "@mui/material";
 
-function Sidebar({ activeMembers, currentMember }) {
-  const getAvatar = (username) => {
-    const avatar = createAvatar(botttsNeutral, {
-      seed: username,
-      radius: 50,
-      size: 48,
-    });
+function Sidebar({ activeMembers }) {
+  const getAvatar = () => {
+    const avatar = createAvatar(botttsNeutral);
     const dataUri = avatar.toDataUriSync();
     return dataUri;
   };
@@ -21,7 +17,7 @@ function Sidebar({ activeMembers, currentMember }) {
         <List>
           {activeMembers.map((user) => (
             <ListItem key={user.id}>
-              <Avatar src={getAvatar(user.clientData.username)} alt="avatar" />
+              <Avatar src={getAvatar()} alt="avatar" />
               {user.clientData.username}
             </ListItem>
           ))}

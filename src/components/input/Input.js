@@ -14,12 +14,6 @@ function Input({ onSendMessage }) {
     setMessage("");
   };
 
-  const handleEnter = (e) => {
-    if (e.key === "Enter") {
-      onSubmit();
-    }
-  };
-
   return (
     <Box className="input-container">
       <TextField
@@ -31,7 +25,6 @@ function Input({ onSendMessage }) {
         type="text"
         value={message}
         onChange={handleInputChange}
-        onKeyUp={handleEnter}
       />
       <Button type="submit" variant="outlined" onClick={onSubmit}>
         SEND
