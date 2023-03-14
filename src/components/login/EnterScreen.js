@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/system";
-import { Button, Paper, TextField, Typography } from "@mui/material";
+import { Button, Paper, TextField } from "@mui/material";
 import "./EnterScreen.css";
 
 function EnterScreen({ userEnter }) {
@@ -16,19 +16,17 @@ function EnterScreen({ userEnter }) {
   return (
     <Box className="enter-page">
       <Paper className="enter-form" elevation={24}>
-        <TextField
+        <TextField label="Choose a nickname" color="secondary"
           required
           id="input-nickname"
-          label="Nickname"
           variant="standard"
           type="text"
           value={nickname}
           onChange={handleInputChange}
         />
-        <Button variant="outlined" onClick={handleSubmit}>
+        <Button variant="outlined" color="secondary" onClick={handleSubmit}>
           Enter chat
         </Button>
-        <Typography>Choose your nickame!</Typography>
       </Paper>
     </Box>
   );

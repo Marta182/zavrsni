@@ -26,7 +26,7 @@ function Input({ onSendMessage }) {
         value={message}
         onChange={handleInputChange}
       />
-      <Button type="submit" variant="outlined" onClick={onSubmit}>
+      <Button type="submit" variant="outlined" color="secondary" onClick={onSubmit}>
         SEND
       </Button>
     </Box>

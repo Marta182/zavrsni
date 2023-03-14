@@ -4,7 +4,7 @@ import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 import Messages from "./components/messages/Messages";
 import Input from "./components/input/Input";
-import { CssBaseline, Box } from "@mui/material";
+import { CssBaseline, Box, Paper, Button } from "@mui/material";
 import "./App.css";
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
     setChat(drone);
     return drone;
   };
-
+  
   const subscribeToRoom = (chat) => {
     const room = chat.subscribe("observable-room");
     room.on("message", (message) => setMessages((prev) => [...prev, message]));
@@ -40,38 +40,49 @@ function App() {
   };
 
   const getRoomMembers = (room) => {
-    room.on("members", (members) => setActiveMembers(members));
-  }
-
+    room.on("members", (members) => {
+      setActiveMembers(members);
+      setChatRoom(room);
+    });
+  
+    room.on("member_leave", (member) => {
+      setActiveMembers((prevMembers) =>
+        prevMembers.filter((m) => m.id !== member.id)
+      );
+    });
+  };
+  
   const onSendMessage = (message) => {
     chat.publish({
       room: "observable-room",
       message,
     });
   };
+
   return (
-    <div className="app">
-      <CssBaseline />
-      {chatMember.username === "" ? (
-        <EnterScreen userEnter={handleEnterChat} />
-      ) : (
-        <>
-          <Header />
-          <Box className="chat-main">
-            <Sidebar activeMembers={activeMembers} currentMember={chatMember} />
-            <Box className="chat">
-              <Messages
-                className="messages"
-                messages={messages}
-                currentMember={chatMember}
-              />
-              <Input className="chat-input" onSendMessage={onSendMessage} />
-            </Box>
-          </Box>
-        </>
-      )}
-    </div>
-  );
+      <div className="app">
+        <CssBaseline />
+        {chatMember.username === "" ? (
+          <EnterScreen userEnter={handleEnterChat} />
+        ) : (
+          <>
+            <Header />
+            <Paper className="chat-main" elevation={24}>
+              <Sidebar activeMembers={activeMembers} currentMember={chatMember} />
+              <Box className="chat">
+                <Messages
+                  className="messages"
+                  messages={messages}
+                  currentMember={chatMember}
+                />
+                <Input className="chat-input" onSendMessage={onSendMessage} />
+              </Box>
+              
+            </Paper>
+          </>
+        )}
+      </div>
+    );
 }
 
 export default App;

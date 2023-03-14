@@ -1,28 +1,30 @@
 import React from "react";
 import { createAvatar } from "@dicebear/core";
-import { botttsNeutral } from "@dicebear/collection";
+import { lorelei } from "@dicebear/collection";
 import "./Sidebar.css";
-import { Box, List, ListItem, Avatar, Typography, Chip } from "@mui/material";
+import { Paper, List, ListItem, Avatar, Chip } from "@mui/material";
 
 function Sidebar({ activeMembers }) {
-  const getAvatar = () => {
-    const avatar = createAvatar(botttsNeutral);
+  const getAvatar = (userId) => {
+    const avatar = createAvatar(lorelei, {
+      seed: userId.toString(),
+    });
     const dataUri = avatar.toDataUriSync();
     return dataUri;
   };
 
   return (
-    <div className="sidebar">
-      <Chip color="success" label="ONLINE" />
+    <Paper elevation={9} className="sidebar">
+      <Chip variant="outlined" color="secondary" label="Online members" />
         <List>
           {activeMembers.map((user) => (
             <ListItem key={user.id}>
-              <Avatar src={getAvatar()} alt="avatar" />
+              <Avatar src={getAvatar(user.id)} alt="avatar" />
               {user.clientData.username}
             </ListItem>
           ))}
         </List>
-    </div>
+    </Paper>
   );
 }
 

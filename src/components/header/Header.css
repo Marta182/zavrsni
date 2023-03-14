@@ -1,7 +1,6 @@
 .header {
   display: flex;
   flex-direction: row;
-  background-color: rgb(255, 255, 255);
   height: 10%;
   border-radius: 20px;
   padding: 5%;
@@ -11,4 +10,15 @@
     color: black;
     font-size: 2rem !important;
     font-weight: bold !important;
+  }
+
+  @media screen and (max-width: 1160px) {
+    .header {
+      display: none;
+    }
+  }
+  @media screen and (max-height: 600px) {
+    .header {
+      display: none;
+    }
   }

@@ -5,7 +5,7 @@ import "./Messages.css";
 function Messages({ messages, currentMember }) {
   const renderMessage = (message) => {
     const { data: messageText, member: { clientData: { username } }, id: memberId } = message;
-    const color = "#" + ((1<<24)*Math.random() | 0).toString(16); // Generate a random color
+    const color = "#" + ((1<<24)*Math.random() | 0).toString(16); 
 
     return (
       <ListItem key={message.id}>
