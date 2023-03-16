@@ -6,6 +6,9 @@
 }
 
 .app {
+  background-image: url("https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1380&t=st=1678995819~exp=1678996419~hmac=84a0f4996d59115d7f8aa56bf742ad5602e5b7b3802b3935edea7f120612bebd");
+  background-size: cover;
+  background-position: center;   
   width: 100vw;
   height: 100vh;
   display: flex;

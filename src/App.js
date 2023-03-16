@@ -4,7 +4,7 @@ import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
 import Messages from "./components/messages/Messages";
 import Input from "./components/input/Input";
-import { CssBaseline, Box, Paper, Button } from "@mui/material";
+import { CssBaseline, Box, Paper } from "@mui/material";
 import "./App.css";
 
 function App() {
@@ -76,7 +76,7 @@ function App() {
           <>
             <Header onLogout={handleLogout} chatMember={chatMember} />
             <Paper className="chat-main" elevation={24}>
-              <Sidebar activeMembers={activeMembers} currentMember={chatMember} />
+              <Sidebar activeMembers={activeMembers}/>
               <Box className="chat">
                 <Messages
                   className="messages"

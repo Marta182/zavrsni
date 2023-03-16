@@ -14,8 +14,8 @@ function EnterScreen({ userEnter }) {
   };
 
   return (
+    <div className = "background">
     <Box className="enter-page">
-      <Paper className="enter-form" elevation={24}>
         <TextField label="Choose a nickname" color="secondary"
           required
           id="input-nickname"
@@ -27,8 +27,8 @@ function EnterScreen({ userEnter }) {
         <Button variant="outlined" color="secondary" onClick={handleSubmit}>
           Enter chat
         </Button>
-      </Paper>
     </Box>
+    </div>
   );
 }
 
