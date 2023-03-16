@@ -59,6 +59,14 @@ function App() {
     });
   };
 
+  const handleLogout = () => {
+    setChatMember({ chatId: "", username: "", avatar: "" });
+    setChat(null);
+    setChatRoom(null);
+    setActiveMembers([]);
+    setMessages([]);
+  };
+
   return (
       <div className="app">
         <CssBaseline />
@@ -66,7 +74,7 @@ function App() {
           <EnterScreen userEnter={handleEnterChat} />
         ) : (
           <>
-            <Header />
+            <Header onLogout={handleLogout} chatMember={chatMember} />
             <Paper className="chat-main" elevation={24}>
               <Sidebar activeMembers={activeMembers} currentMember={chatMember} />
               <Box className="chat">

@@ -30,8 +30,3 @@
   display: flex;
   flex-direction: column;
 }
-
-.logout-btn {
-  display:flex;
-  flex-direction: row;
-}

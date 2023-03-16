@@ -4,7 +4,7 @@ import { lorelei } from "@dicebear/collection";
 import "./Sidebar.css";
 import { Paper, List, ListItem, Avatar, Chip } from "@mui/material";
 
-function Sidebar({ activeMembers }) {
+function Sidebar({ activeMembers, currentMember }) {
   const getAvatar = (userId) => {
     const avatar = createAvatar(lorelei, {
       seed: userId.toString(),
@@ -23,6 +23,12 @@ function Sidebar({ activeMembers }) {
               {user.clientData.username}
             </ListItem>
           ))}
+          {currentMember && (
+            <ListItem>
+              <Avatar src={getAvatar(currentMember.chatId)} alt="avatar" />
+              {currentMember.username}
+            </ListItem>
+          )}
         </List>
     </Paper>
   );
