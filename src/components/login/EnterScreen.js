@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/system";
-import { Button, Paper, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import "./EnterScreen.css";
 
 function EnterScreen({ userEnter }) {

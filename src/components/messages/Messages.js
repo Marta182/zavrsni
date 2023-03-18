@@ -6,13 +6,27 @@ function Messages({ messages, currentMember }) {
   const renderMessage = (message) => {
     const { data: messageText, member: { clientData: { username } }, clientId } = message;
     const messageFromMe = currentMember.clientId === clientId;
-    const color = messageFromMe ? "teal" : "lightpink";
+    const color = messageFromMe ? "lavender" : "lightpink";
+    const textAlign = messageFromMe ? "right" : "left";
 
     return (
       <ListItem key={message.id}>
-        <ListItemText className="msg"
-          primary={username}
-          secondary={<Chip label={messageText} style={{ backgroundColor: color}} />}
+        <ListItemText
+          disableTypography={true}
+          primary={
+            <div className="username" style={{ textAlign: textAlign }}>
+              {username}
+            </div>
+          }
+          secondary={
+            <Chip
+              label={messageText}
+              style={{
+                backgroundColor: color,
+                float: textAlign === "right" ? "right" : "none",
+              }}
+            />
+          }
         />
       </ListItem>
     );
@@ -21,8 +35,8 @@ function Messages({ messages, currentMember }) {
   return (
     <div className="messages-container">
       <List className="messages-list">
-      {messages.map(renderMessage)}
-      </List>
+        {messages.map(renderMessage)}
+        </List>
     </div>
   );
 }
