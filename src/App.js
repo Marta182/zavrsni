@@ -6,15 +6,14 @@ import Messages from "./components/messages/Messages";
 import Input from "./components/input/Input";
 import { CssBaseline, Box, Paper } from "@mui/material";
 import "./App.css";
+import { ROOM_NAME, SCALEDRONE_API_KEY } from "./constants";
 
 function App() {
   const [chatMember, setChatMember] = useState({
-    chatId: "",
     username: "",
-    avatar: "",
+    clientId: ""
   });
   const [chat, setChat] = useState(null);
-  const [chatRoom, setChatRoom] = useState(null);
   const [activeMembers, setActiveMembers] = useState([]);
   const [messages, setMessages] = useState([]);
 
@@ -27,22 +26,24 @@ function App() {
   };
 
   const connectToChat = (member) => {
-    const drone = new window.Scaledrone("hCfZrRWHYAypJvMB", { data: member });
+    const drone = new window.Scaledrone(SCALEDRONE_API_KEY, { data: member });
+    drone.on("open", (error)=>{
+      const clientId = drone.clientId;
+      setChatMember(chatMember=>({...chatMember, clientId}))
+    })
     setChat(drone);
     return drone;
   };
   
   const subscribeToRoom = (chat) => {
-    const room = chat.subscribe("observable-room");
+    const room = chat.subscribe(ROOM_NAME);
     room.on("message", (message) => setMessages((prev) => [...prev, message]));
-    setChatRoom(room);
     return room;
   };
 
   const getRoomMembers = (room) => {
     room.on("members", (members) => {
       setActiveMembers(members);
-      setChatRoom(room);
     });
   
     room.on("member_leave", (member) => {
@@ -50,19 +51,24 @@ function App() {
         prevMembers.filter((m) => m.id !== member.id)
       );
     });
+
+    room.on("member_join", (member) => {
+      setActiveMembers((prevMembers) =>
+       [...prevMembers, member]
+      );
+    });
   };
   
   const onSendMessage = (message) => {
     chat.publish({
-      room: "observable-room",
+      room: ROOM_NAME,
       message,
     });
   };
 
   const handleLogout = () => {
+    chat.close();
     setChatMember({ chatId: "", username: "", avatar: "" });
-    setChat(null);
-    setChatRoom(null);
     setActiveMembers([]);
     setMessages([]);
   };

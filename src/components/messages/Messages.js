@@ -2,16 +2,17 @@ import React from "react";
 import { List, ListItem, ListItemText, Chip } from "@mui/material";
 import "./Messages.css";
 
-function Messages({ messages }) {
+function Messages({ messages, currentMember }) {
   const renderMessage = (message) => {
-    const { data: messageText, member: { clientData: { username } }, id: memberId } = message;
-    const color = "#" + ((1<<24)*Math.random() | 0).toString(16); 
+    const { data: messageText, member: { clientData: { username } }, clientId } = message;
+    const messageFromMe = currentMember.clientId === clientId;
+    const color = messageFromMe ? "teal" : "lightpink";
 
     return (
       <ListItem key={message.id}>
-        <ListItemText
+        <ListItemText className="msg"
           primary={username}
-          secondary={<Chip label={messageText} style={{ backgroundColor: color }} />}
+          secondary={<Chip label={messageText} style={{ backgroundColor: color}} />}
         />
       </ListItem>
     );
