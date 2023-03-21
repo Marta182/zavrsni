@@ -14,9 +14,11 @@
   display: inline-block;
   padding: 4px 8px;
   color: #000;
-  fontSize: 14px;
-  fontWeight: bold;
-  maxWidth:80%;
-  whiteSpace: normal;
-  wordWrap: break-word;
+  font-size: 14px;
+  font-weight: bold;
+  max-width: 80%;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-all;
 }
+
