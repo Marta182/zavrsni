@@ -34,3 +34,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.messages {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+  overflow: auto;
+}

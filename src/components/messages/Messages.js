@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ListItem, ListItemText, Chip } from "@mui/material";
+import { List, ListItem, ListItemText } from "@mui/material";
 import "./Messages.css";
 
 function Messages({ messages, currentMember }) {
@@ -19,18 +19,21 @@ function Messages({ messages, currentMember }) {
             </div>
           }
           secondary={
-            <Chip
-              label={messageText}
+            <div
+              className="messages-cont"
               style={{
                 backgroundColor: color,
+                borderRadius: "16px",
                 float: textAlign === "right" ? "right" : "none",
               }}
-            />
+            >
+              {messageText}
+            </div>
           }
         />
       </ListItem>
     );
-  };
+        }    
 
   return (
     <div className="messages-container">
